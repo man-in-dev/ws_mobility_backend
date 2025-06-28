@@ -3,7 +3,7 @@ import {
     invokeLLM,
     sendEmail,
     uploadFile,
-    handleFileUpload,
+    // handleFileUpload,
     generateImage,
     extractDataFromUploadedFile
 } from '../controllers/integration.controller.js';
@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.post('/llm', invokeLLM);
 router.post('/send-email', sendEmail);
-router.post('/upload-file', uploadFile, handleFileUpload);
+// router.post('/upload-file', uploadFile, handleFileUpload);
 router.post('/generate-image', generateImage);
 router.post('/extract-data', uploadFile, extractDataFromUploadedFile);
 
