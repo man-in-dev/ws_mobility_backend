@@ -40,11 +40,22 @@ export const sendEmail = async (req, res) => {
 };
 
 // File Upload (Multer)
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ storage: multer.memoryStorage() });
+
 export const uploadFile = upload.single('file');
+
 export const handleFileUpload = (req, res) => {
     if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
-    res.json({ filename: req.file.filename, originalname: req.file.originalname });
+
+    // You can access the file buffer here: req.file.buffer
+    // Upload it to cloud storage like S3, Cloudinary, etc.
+
+    res.json({
+        originalname: req.file.originalname,
+        mimetype: req.file.mimetype,
+        size: req.file.size,
+        message: "File received in memory. You should upload it to a cloud service.",
+    });
 };
 
 // Image Generation (OpenAI DALL·E)
